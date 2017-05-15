@@ -11,6 +11,9 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
+parameters:
+    cache_type: array
+
 monolog:
     handlers:
         main:
