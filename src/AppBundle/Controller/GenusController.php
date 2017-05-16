@@ -1,11 +1,4 @@
 <?php
-/**
- *
- * Created by PhpStorm.
- * User: fontans
- * Date: 5/12/17
- * Time: 9:52 PM
- */
 
 namespace AppBundle\Controller;
 
@@ -42,7 +35,7 @@ class GenusController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $genuses = $em->getRepository("AppBundle:Genus")
-            ->findAll();
+            ->findAllPublishedOrderedBySize();
 
         return $this->render(
             "genus/list.html.twig",
@@ -54,16 +47,25 @@ class GenusController extends Controller
     }
 
     /**
-     * @Route("/genus/{genusName}")
+     * @Route("/genus/{genusName}", name="genus_show")
      * @param $genusName
      * @return Response
      */
     public function showAction($genusName)
     {
-        $funFact = 'Octopuses can change the color of their body in just *three-tenths* of a second!';
+        $em = $this->getDoctrine()->getManager();
+        $genus = $em->getRepository('AppBundle:Genus')->findOneBy(
+            ['name' => $genusName]
+        );
+
+
+        if (!$genusName) {
+            throw $this->createNotFoundException("No genus found");
+        }
+
+        /*
         $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
         $key = md5($funFact);
-
         if ($cache->contains($key)) {
             $funFact = $cache->fetch($key);
         } else {
@@ -72,12 +74,12 @@ class GenusController extends Controller
                 ->transform($funFact);
             $cache->save($key, $funFact);
         }
+        */
 
         return $this->render(
             'genus/show.html.twig',
             [
-                'name' => $genusName,
-                'funFact' => $funFact
+                'genus' => $genus
             ]
         );
     }
