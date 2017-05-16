@@ -25,21 +25,26 @@ class Genus
     private $name;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $subFamily;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $speciesCount;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $funFact;
+
+    /**
      * @return mixed
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     * @return Genus
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
     }
 
     /**
@@ -59,4 +64,64 @@ class Genus
         $this->name = $name;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSubFamily()
+    {
+        return $this->subFamily;
+    }
+
+    /**
+     * @param mixed $subFamily
+     * @return Genus
+     */
+    public function setSubFamily($subFamily)
+    {
+        $this->subFamily = $subFamily;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpeciesCount()
+    {
+        return $this->speciesCount;
+    }
+
+    /**
+     * @param mixed $speciesCount
+     * @return Genus
+     */
+    public function setSpeciesCount($speciesCount)
+    {
+        $this->speciesCount = $speciesCount;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFunFact()
+    {
+        return $this->funFact;
+    }
+
+    /**
+     * @param mixed $funFact
+     * @return Genus
+     */
+    public function setFunFact($funFact)
+    {
+        $this->funFact = $funFact;
+        return $this;
+    }
+
+    public function getUpdatedAt()
+    {
+        return new \DateTime('-'. rand(0,100). ' days');
+    }
+
 }

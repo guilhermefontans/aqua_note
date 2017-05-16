@@ -75,3 +75,9 @@ doctrine_cache:
             type: %cache_type%
             file_system:
               directory: %kernel.cache_dir%/markdown_cache
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
