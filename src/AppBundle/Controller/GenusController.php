@@ -63,6 +63,9 @@ class GenusController extends Controller
             throw $this->createNotFoundException("No genus found");
         }
 
+        $markdown = $this->get('app.markdown_transformer');
+        $funFact = $markdown->parse($genus->getFunFact());
+
         /*
         $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
         $key = md5($funFact);
@@ -76,10 +79,13 @@ class GenusController extends Controller
         }
         */
 
+        $this->get('logger')->info('Showing Genus: ' . $genusName);
+
         return $this->render(
             'genus/show.html.twig',
             [
-                'genus' => $genus
+                'genus' => $genus,
+                'funFact' =>$funFact
             ]
         );
     }

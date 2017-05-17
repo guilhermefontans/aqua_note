@@ -1,6 +1,5 @@
 {
     "name": "fontans/aqua_note",
-    "license": "proprietary",
     "type": "project",
     "autoload": {
         "psr-4": {

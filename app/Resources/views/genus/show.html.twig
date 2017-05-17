@@ -13,7 +13,7 @@
                 <dt>Known Species:</dt>
                 <dd>{{ genus.speciesCount }}</dd>
                 <dt>Fun Fact:</dt>
-                <dd>{{ genus.funFact}}</dd>
+                <dd>{{ genus.getFunFact | markdownify}}</dd>
             </dl>
         </div>
     </div>
@@ -22,7 +22,7 @@
 {% block javascripts %}
      {{ parent() }}
     <script src="{{ asset('js/react.js') }}"></script>
-    <script src="{{ asset('js/react-dom.js') }}></script>
+    <script src="{{ asset('js/react-dom.js') }}"></script>
     <script src="{{ asset('js/browser.mim.js') }}"></script>
 
     <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
